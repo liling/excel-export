@@ -48,6 +48,27 @@ class RowManipulationAbility {
         fillRow(properties, rowNumber)
     }
 
+    XlsxExporter applyFormat(int sourceRow, int targetRow, IntRange columns) {
+        // apply format
+        if (sourceRow == targetRow) return
+
+        columns.each { int j ->
+            def cell = getCellAt(sourceRow, j)
+            if (cell) {
+                def tc = getCellAt(targetRow, j)
+                if (tc) tc.setCellStyle(cell.getCellStyle())
+            }
+        }
+
+        def cell = getCellAt(sourceRow, columns.fromInt)
+        if (cell) {
+            def tc = getCellAt(targetRow, columns.fromInt)
+            if (tc) tc.getRow().setHeight(cell.getRow().getHeight())
+        }
+
+        this
+    }
+
     private static List<Object> getPropertiesFromObject(Object object, List<Getter> selectedProperties) {
         selectedProperties.collect { it.getFormattedValue(object) }
     }
