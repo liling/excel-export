@@ -37,9 +37,12 @@ grails.project.dependency.resolution = {
         runtime('xerces:xercesImpl:2.10.0') {
             excludes 'xml-apis'
         }
+        build("org.tmatesoft.svnkit:svnkit:1.3.5") {
+            excludes "jna", "trilead-ssh2", "sqljet"
+        }
     }
     plugins {
-        build ':release:2.2.1', ':rest-client-builder:1.0.3', {
+        build(':release:2.2.1', ':rest-client-builder:1.0.3', ':svn:1.0.2') {
             export = false
         }
     }
