@@ -4,6 +4,16 @@ import pl.touk.excel.export.XlsxExporter
 
 @Category(XlsxExporter)
 class FileManipulationAbility {
+
+    void selectSheet(String name) {
+        sheet = createOrLoadSheet(workbook, name)
+    }
+
+    void removeSheet(String name) {
+        int idx = workbook.getSheetIndex(name)
+        workbook.removeSheetAt(idx)
+    }
+
     void save(OutputStream outputStream) {
         workbook.write(outputStream)
         outputStream.flush()
