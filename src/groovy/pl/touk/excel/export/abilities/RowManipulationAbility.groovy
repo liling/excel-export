@@ -69,6 +69,13 @@ class RowManipulationAbility {
         this
     }
 
+    XlsxExporter setHeight(short height, int rowNumber) {
+        def cell = getCellAt(rowNumber, 1)
+        cell.getRow().setHeight(height)
+
+        this
+    }
+
     private static List<Object> getPropertiesFromObject(Object object, List<Getter> selectedProperties) {
         selectedProperties.collect { it.getFormattedValue(object) }
     }
