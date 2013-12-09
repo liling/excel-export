@@ -34,6 +34,14 @@ class XlsxExporter {
         setUp(workbook)
     }
 
+    public XSSFWorkbook getWorkbook() {
+        return this.workbook
+    }
+
+    public Sheet getSheet() {
+        return this.sheet
+    }
+
     private XSSFWorkbook createOrLoadWorkbook(String fileNameWithPath) {
         if(new File(fileNameWithPath).exists()) {
             zipPackage = OPCPackage.open(fileNameWithPath);
